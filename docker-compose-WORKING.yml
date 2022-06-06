@@ -1,0 +1,23 @@
+version: "3.9"
+
+#networks:
+# kong-net:
+#  driver: bridge
+
+services:
+  wallet:
+#    networks:
+#      - kong-net
+    build: ./wallet
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+#    networks:
+#      - kong-net
+    image: mongo
+    ports:
+      - "27017:27017"
